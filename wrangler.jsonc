@@ -9,7 +9,14 @@
 	"compatibility_date": "2025-06-01",
 	"observability": {
 		"enabled": true
-	}
+	},
+	"secrets_store_secrets": [
+		{
+			"binding": "GOOGLE_MAPS_PLATFORM_API_KEY",
+			"store_id": "8ca8dae5d93049c79401615b774c7f9b",
+			"secret_name": "GOOGLE_MAPS_PLATFORM_API_KEY"
+		}
+	]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
