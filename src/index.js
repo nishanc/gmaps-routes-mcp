@@ -15,7 +15,8 @@ export default class GMapsMCP extends WorkerEntrypoint {
 			// Construct the request body
 			const body = JSON.stringify({
 				origin: { address: origin },
-				destination: { address: destination }
+				destination: { address: destination },
+				languageCode: 'en-US',
 			});
 
 			// Set up headers for the request
