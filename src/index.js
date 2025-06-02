@@ -1,15 +1,21 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
 
-export default {
-	async fetch(request, env, ctx) {
-		return new Response('Hello World!');
-	},
-};
+import { WorkerEntrypoint } from 'cloudflare:workers'
+import { ProxyToSelf } from 'workers-mcp'
+
+export default class MyWorker extends WorkerEntrypoint {
+  /**
+   * A warm, friendly greeting from your new Workers MCP server.
+   * @param name {string} the name of the person we are greeting.
+   * @return {string} the contents of our greeting.
+   */
+  sayHello(name) {
+    return `Hello from an MCP Worker, ${name}!`
+  }
+
+  /**
+   * @ignore
+   **/
+  async fetch(request) {
+    return new ProxyToSelf(this).fetch(request)
+  }
+}
